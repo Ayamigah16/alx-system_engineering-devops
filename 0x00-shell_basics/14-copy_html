@@ -1,0 +1,9 @@
+#!/bin/bash
+cd ..
+for file in $(ls *.html); do
+    if [! -e "$file"]; then
+       cp "$file" .
+    elif ["$file" -nt "$file"]; then
+       cp "$file" .
+    fi
+done
