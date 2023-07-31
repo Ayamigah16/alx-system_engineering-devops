@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
-# This script tells the story of the /etc/passwd file.
 
-# Set the Internal Field Separator (IFS) to ':' to parse each line by fields
-IFS=":"
+# Displays a story with each line of /etc/passwd.
 
-# Read each line of the /etc/passwd file using the while loop
-while read -r username _ uid gid info home shell; do
-    # Extract the user description from the info field (after the last comma)
-    description="${info##*,}"
-
-    # Print the extracted information in the required format
-    echo "The user $username is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by the passcode x, more info about the user here: $description"
-done < /etc/passwd
+input="/etc/passwd"
+while IFS=: read -r username password uid gid description home shell
+do
+    echo "The user $username is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by the passcode $password, more info about the user here: $description"
+done < "$input"
