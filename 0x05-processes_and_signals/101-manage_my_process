@@ -27,7 +27,7 @@ if [ "$1" == "start" ]; then
 elif [ "$1" == "stop" ]; then
   if [ -f /var/run/my_process.pid ]; then
     PID=$(cat /var/run/my_process.pid)
-    kill $PID
+    kill "$PID"
     rm /var/run/my_process.pid
     echo "manage_my_process stopped"
   else
@@ -37,7 +37,7 @@ elif [ "$1" == "stop" ]; then
 elif [ "$1" == "restart" ]; then
   if [ -f /var/run/my_process.pid ]; then
     PID=$(cat /var/run/my_process.pid)
-    kill $PID
+    kill "$PID"
     rm /var/run/my_process.pid
     $MANAGE_SCRIPT &
     echo $! > /var/run/my_process.pid
