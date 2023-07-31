@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script displays messages based on the numbers from 1 to 20
+
+# Initialize a counter variable
+counter=1
+
+# Write the while loop with the case statement
+while [ "$counter" -le 20 ]; do
+    case $counter in
+        4)
+            echo "$counter"
+            echo "bad luck from China"
+            ;;
+        9)
+            echo "$counter"
+            echo "bad luck from Japan"
+            ;;
+        17)
+            echo "$counter"
+            echo "bad luck from Italy"
+            ;;
+        *)
+            echo "$counter"
+            ;;
+    esac
+
+    ((counter++))
+done
