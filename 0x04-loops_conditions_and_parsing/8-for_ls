@@ -9,6 +9,11 @@ for file in *; do
         continue
     fi
 
+    # Check if the folder is empty
+    if [ -z "$(ls -A "$file")" ]; then
+        echo "$file"
+    fi
+
     # Check if the folder contains files with dashes or special characters
     has_files_with_dash=0
     for inner_file in "$file"/*; do
