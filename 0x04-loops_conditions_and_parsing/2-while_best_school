@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times using a while loop
+
+# Initialize a counter variable
+counter=0
+
+# Write the while loop to display "Best School" 10 times
+while [ "$counter" -lt 10 ]; do
+    echo "Best School"
+    ((counter++))
+done
