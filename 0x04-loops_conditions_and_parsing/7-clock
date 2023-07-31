@@ -2,18 +2,15 @@
 # This script displays the time for 12 hours and 59 minutes
 
 # Initialize variables for hours and minutes
-hour=0
-minute=1
-
-# Write the while loop to display the clock
-while [ "$hour" -lt 12 ]; do
-    echo "Hour: $hour"
-
-    while [ "$minute" -le 59 ]; do
-        echo "$minute"
-        ((minute++))
+HOURS=0
+while [ $HOURS -lt 13 ]
+do
+    echo "Hour: $HOURS"
+    MINUTES=1
+    while [ $MINUTES -lt 60 ]
+    do
+        echo $MINUTES
+	let MINUTES+=1
     done
-
-    ((hour++))
-    minute=0
+    let HOURS+=1
 done
