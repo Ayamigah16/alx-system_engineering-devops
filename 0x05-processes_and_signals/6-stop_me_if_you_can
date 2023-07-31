@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
 # Script that stops the 4-to_infinity_and_beyond process.
 
-# Trap the SIGTERM signal and stop the 4-to_infinity_and_beyond process.
-trap 'echo "Terminated"; exit' SIGTERM
-
-# Run the 4-to_infinity_and_beyond script in the background.
-./4-to_infinity_and_beyond &
-
-# Wait for the 4-to_infinity_and_beyond process to finish.
-wait
+pkill -f 4-to_infinity_and_beyond

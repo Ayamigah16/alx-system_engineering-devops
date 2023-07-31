@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Script that stops the 7-highlander process.
+
+# Trap the SIGTERM signal and display "I am invincible!!!" when received.
+trap 'echo "I am invincible!!!"; exit' SIGTERM
+
+# Run the 7-highlander script in the background.
+./7-highlander &
+
+# Wait for the 7-highlander process to finish.
+wait
