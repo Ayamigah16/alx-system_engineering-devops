@@ -2,30 +2,16 @@
 # This script displays the content of the current directory in a list format,
 # showing only the part of the name after the first dash and excluding hidden files.
 
-# Use the for loop to list the files and folders in the current directory
+# Use the for loop to list the files in the current directory
 for file in *; do
-    # Check if the file is not hidden and is a directory
-    if [ ! -d "$file" ] || [[ "$file" == .* ]]; then
+    # Check if the file is not hidden and contains a dash
+    if [ ! -f "$file" ] || [[ "$file" == .* ]] || [[ "$file" != *-* ]]; then
         continue
     fi
 
-    # Check if the folder is empty
-    if [ -z "$(ls -A "$file")" ]; then
-        echo "$file"
-    fi
+    # Extract the part of the name after the first dash
+    name_after_dash="${file#*-}"
 
-    # Check if the folder contains files with dashes or special characters
-    has_files_with_dash=0
-    for inner_file in "$file"/*; do
-        if [[ "$inner_file" == *-* ]] || [[ "$inner_file" != "$file"/* ]]; then
-            has_files_with_dash=1
-            break
-        fi
-    done
-
-    # If the folder contains files with dashes or special characters, print the folder name
-    # Otherwise, skip to the next iteration
-    if [ "$has_files_with_dash" -eq 1 ]; then
-        echo "$file"
-    fi
+    # Print the extracted name
+    echo "$name_after_dash"
 done
