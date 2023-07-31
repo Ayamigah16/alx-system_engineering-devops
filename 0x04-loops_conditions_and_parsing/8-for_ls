@@ -4,7 +4,14 @@
 
 # Use the for loop to list the files in the current directory
 for file in *; do
-    if [ -f "$file" ] && [[ "$file" != .* ]] && [[ "$file" == *-* ]]; then
-        echo "${file#*-}"
+    # Check if the file is not hidden and contains a dash
+    if [ ! -f "$file" ] || [[ "$file" == .* ]] || [[ "$file" != *-* ]]; then
+        continue
     fi
+
+    # Extract the part of the name after the first dash
+    name_after_dash="${file#*-}"
+
+    # Print the extracted name
+    echo "$name_after_dash"
 done
