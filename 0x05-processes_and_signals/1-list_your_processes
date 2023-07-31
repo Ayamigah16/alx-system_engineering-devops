@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Script that displays a list of currently running processes, including hierarchy.
+
+# Use 'ps' command to list all processes (for all users) along with the headers.
+# The '-e' option lists all processes, and the '-o' option specifies the output format.
+# The 'h' option hides the header, and 'f' displays the full format (including the process hierarchy).
+ps -ef
