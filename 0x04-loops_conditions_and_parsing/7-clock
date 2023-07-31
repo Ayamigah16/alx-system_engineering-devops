@@ -3,14 +3,12 @@
 
 # Initialize variables for hours and minutes
 HOURS=0
-while [ $HOURS -lt 13 ]
-do
+while [ "$HOURS" -lt 13 ]; do
     echo "Hour: $HOURS"
     MINUTES=1
-    while [ $MINUTES -lt 60 ]
-    do
-        echo $MINUTES
-	let MINUTES+=1
+    while [ "$MINUTES" -lt 60 ]; do
+        echo "$MINUTES"
+        ((MINUTES++))
     done
-    let HOURS+=1
+    ((HOURS++))
 done
