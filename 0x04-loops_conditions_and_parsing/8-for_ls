@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script displays the content of the current directory in a list format,
+# showing only the part of the name after the first dash and excluding hidden files.
+
+# Use the for loop to list the files in the current directory
+for file in *; do
+    if [ -f "$file" ] && [[ "$file" != .* ]] && [[ "$file" == *-* ]]; then
+        echo "${file#*-}"
+    fi
+done
