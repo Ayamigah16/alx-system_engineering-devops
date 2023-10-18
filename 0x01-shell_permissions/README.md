@@ -129,37 +129,18 @@ Write a script that changes the owner and the group owner of _hello to vincent a
 - The file _hello is in the working directory
 - The file _hello is a symbolic link
  
-File: 101-symbolic_link_permissions
+File:  `101-symbolic_link_permissions`
     
-16. If only
-#advanced
-Score: 65.0% (Checks completed: 100.0%)
+16. **If only**
+ 
 Write a script that changes the owner of the file hello to betty only if it is owned by the user guillaume.
 
 The file hello will be in the working directory
-julien@ubuntu:/tmp/h$ ls -l
-total 24
--rwxrwxr-x 1 julien    julien      47 Sep 20 15:18 102-if_only 
--rw-rw-r-- 1 guillaume julien      23 Sep 20 14:25 hello
-julien@ubuntu:/tmp/h$ sudo ./102-if_only 
-julien@ubuntu:/tmp/h$ ls -l
-total 24
--rwxrwxr-x 1 julien julien      47 Sep 20 15:18 102-if_only 
--rw-rw-r-- 1 betty  julien      23 Sep 20 14:25 hello
-julien@ubuntu:/tmp/h$ 
-Repo:
-
-GitHub repository: alx-system_engineering-devops
-Directory: 0x01-shell_permissions
-File: 102-if_only
+ 
+File: **102-if_only**
     
-17. Star Wars
-#advanced
-Score: 65.0% (Checks completed: 100.0%)
+17. **Star Wars**
+ 
 Write a script that will play the StarWars IV episode in the terminal.
-
-Repo:
-
-GitHub repository: alx-system_engineering-devops
-Directory: 0x01-shell_permissions
-File: 103-Star_Wars
+ 
+File: `103-Star_Wars`
