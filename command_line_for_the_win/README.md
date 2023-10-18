@@ -1,6 +1,8 @@
 # Command line for the win
 `Bash` `Scripting`
+
  ***By:*** Sylvain Kalache, co-founder at Holberton School
+ 
  ***Weight:*** 1
  Project will start Oct 9, 2023 6:00 AM, must end by Oct 23, 2023 6:00 AM
  
@@ -69,3 +71,25 @@ Repo:
 - GitHub repository: alx-system_engineering-devops
 - Directory: command_line_for_the_win
 - File: 2-next_9_tasks.jpg,2-next_9_tasks.png
+
+## Solution
+
+- Connect to the saandbox
+  ```
+     sftp username@<host_address>
+  ```
+- Enter the password when requested
+- Navigate to the remote dicrectory to transfer the file
+  ```
+     cd <remote_directory_path>
+  ```
+- Navigate to the local directory where the images are stord
+  ```
+   lcd <local_directory_path>
+  ```
+- Transfer the image files to the remote host using ***put*** command
+  ```
+      put 0-first_9_tasks.jpg
+      put 1-next_9_tasks.jpg
+      put 2-next_9_tasks.jpg
+  ```
