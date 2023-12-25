@@ -2,6 +2,6 @@
 # Description: Kill a process named "killmenow" using pkill
 
 exec { 'killmenow':
-  command => 'pkill -f killmenow',
-  onlyif  => 'pgrep -f killmenow',
+  command => '/usr/bin/pkill -f killmenow',
+  onlyif  => '/usr/bin/pgrep -f killmenow',
 }
