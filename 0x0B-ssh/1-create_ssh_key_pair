@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Script to create an RSA key pair
 
 # Define the key name
