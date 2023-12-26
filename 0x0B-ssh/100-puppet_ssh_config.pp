@@ -2,10 +2,10 @@
 
 # Ensure the parent directory exists
 file { '/home/root':
-  ensure  => 'directory',
-  mode    => '0755',
-  owner   => 'root',
-  group   => 'root',
+  ensure => 'directory',
+  mode   => '0755',
+  owner  => 'root',
+  group  => 'root',
 }
 
 # Ensure the SSH client configuration directory exists
