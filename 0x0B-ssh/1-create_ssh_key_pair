@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Script to create an RSA key pair
+
+# Define the key name
+key_name="school"
+
+# Define the number of bits
+num_bits=4096
+
+# Define the passphrase
+passphrase="betty"
+
+# Generate the RSA key pair
+ssh-keygen -t rsa -b "$num_bits" -C "Create an SSH key pair" -f "./$key_name" -N "$passphrase"
+
+# Display information about the generated key pair
+echo "Generating public/private rsa key pair."
+echo "Your identification has been saved in $key_name."
+echo "Your public key has been saved in $key_name.pub."
+echo "The key fingerprint is:"
+ssh-keygen -lf ~/.ssh/$key_name
+echo "The key's randomart image is:"
+ssh-keygen -lvf ~/.ssh/$key_name.pub
+
+# Move the generated files to the current directory
+mv ~/.ssh/$key_name* .
+
+# List the current directory contents
+ls
