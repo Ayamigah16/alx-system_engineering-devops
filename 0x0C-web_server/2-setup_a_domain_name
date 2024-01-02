@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Bash script to setup a domain name for your web server
+
+# Provide your domain name without subdomains
+DOMAIN_NAME="yourdomain.tech"
+
+# Configure DNS records with an A entry pointing to your web-01 IP address
+echo "Updating DNS records for $DOMAIN_NAME"
+# Add the necessary DNS configuration command here (it may vary depending on your DNS provider)
+
+# Display a message indicating successful domain setup
+echo "Domain $DOMAIN_NAME is configured. Please allow time for DNS propagation."
+
+# Note: Update the script with the actual DNS configuration command based on your DNS provider.
