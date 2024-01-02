@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Bash script to install and configure Nginx on Ubuntu 16.04
+
+# Update the package list and install nginx
+apt-get update -y
+apt-get install -y nginx
+
+# Configure Nginx to listen on port 80
+sed -i 's/80 default_server/80 default_server;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx (without using systemctl)
+service nginx restart
+
+# Create a default HTML page with the content "Hello World!"
+echo "Hello World!" > /var/www/html/index.html
+
+# Display a message indicating successful installation
+echo "Nginx installed and configured successfully! Visit http://localhost/ or use curl to check."
+
+# Note: The script may need to be executed with root privileges
