@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script fixes Apache to return a page containing Hello Holberton
+
+# Update package information and install Apache
+apt-get update
+apt-get install -y apache2
+
+# Start the Apache service
+service apache2 start
+
+# Create a simple HTML page with Hello Holberton
+echo "<html><body>Hello Holberton</body></html>" > /var/www/html/index.html
