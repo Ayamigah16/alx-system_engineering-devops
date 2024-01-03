@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Bash script to configure Nginx for a custom 404 page on Ubuntu 16.04
+
+# Check if Nginx is installed
+if ! command -v nginx &> /dev/null; then
+    echo "Nginx is not installed. Please run 1-install_nginx_web_server script first."
+    exit 1
+fi
+
+# Define the custom 404 page configuration
+NOT_FOUND_CONFIG="error_page 404 /custom_404.html;
+location = /custom_404.html {
+    root /usr/share/nginx/html;
+    internal;
+    echo 'Ceci n\'est pas une page';
+}"
+
+# Add the custom 404 page configuration to the Nginx default site configuration
+echo "$NOT_FOUND_CONFIG" | tee -a /etc/nginx/sites-available/default > /dev/null
+
+# Restart Nginx (without using systemctl)
+service nginx restart
+
+# Display a message indicating successful configuration
+echo "Nginx configured with a custom 404 page. Requests to non-existing pages will return 'Ceci n'est pas une page'."
