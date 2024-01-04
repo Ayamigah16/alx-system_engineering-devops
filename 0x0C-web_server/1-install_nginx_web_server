@@ -2,23 +2,8 @@
 # Bash script to install and configure Nginx on Ubuntu 16.04
 
 # Update the package list and install nginx
-apt-get update -y
-apt-get install -y nginx
-
-# install some pre-requisites
-apt -y install gnupg2 ca-certificates lsb-release
-
-# setting up repository for mainline
-echo "deb http://nginx.org/packages/mainline/ubuntu $(lsb_release -cs) nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
-
-# get a signing key for repository verification
-wget http://nginx.org/keys/nginx_signing.key
-
-# import the key
-apt-key add nginx_signing.key
-
-# run a update
-apt-get -y update && apt-get -y install nginx
-
-# Restart Nginx (without using systemctl)
-service nginx restart
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo chown -R ubuntu /var/www
+echo "Hello World" > /var/www/html/index.nginx-debian.html
+sudo service nginx start
