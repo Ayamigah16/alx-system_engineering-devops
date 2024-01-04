@@ -5,16 +5,20 @@
 apt-get update -y
 apt-get install -y nginx
 
-# Configure Nginx to listen on port 80
-sed -i 's/80 default_server/80 default_server;/g' /etc/nginx/sites-available/default
+# install some pre-requisites
+apt -y install gnupg2 ca-certificates lsb-release
+
+# setting up repository for mainline
+echo "deb http://nginx.org/packages/mainline/ubuntu $(lsb_release -cs) nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+
+# get a signing key for repository verification
+wget http://nginx.org/keys/nginx_signing.key
+
+# import the key
+apt-key add nginx_signing.key
+
+# run a update
+apt-get -y update && apt-get -y install nginx
 
 # Restart Nginx (without using systemctl)
 service nginx restart
-
-# Create a default HTML page with the content "Hello World!"
-echo "Hello World!" > /var/www/html/index.html
-
-# Display a message indicating successful installation
-echo "Nginx installed and configured successfully! Visit http://localhost/ or use curl to check."
-
-# Note: The script may need to be executed with root privileges
