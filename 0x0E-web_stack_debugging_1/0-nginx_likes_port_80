@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Step 1: Check Nginx configuration
+nginx_config="/etc/nginx/sites-available/default"
+
+# Step 2: Check if port 80 is already in use
+port_in_use=$(netstat -tuln | grep ':80')
+
+if [ -z "$port_in_use" ]; then
+    echo "Port 80 is not in use."
+else
+    echo "Port 80 is already in use. Exiting."
+    exit 1
+fi
+
+# Step 3: Modify Nginx configuration to listen on port 80
+sed -i 's/^\s*listen\s*80\s*default_server;/listen 80 default_server;/g' $nginx_config
+
+# Step 4: Restart Nginx
+service nginx restart
+
+# Verify Nginx is now listening on port 80
+nginx_status=$(netstat -tuln | grep ':80')
+
+if [ -z "$nginx_status" ]; then
+    echo "Nginx failed to start listening on port 80. Please check the configuration."
+else
+    echo "Nginx is now listening on port 80."
+fi
