@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "listen 80 default_server;" > /etc/nginx/sites-available/default
+nginx -s reload
