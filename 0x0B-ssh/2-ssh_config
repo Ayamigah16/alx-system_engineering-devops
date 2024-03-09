@@ -1,3 +1,4 @@
-Host your_server_ip_or_hostname
+Host 54.146.57.65
+    User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
