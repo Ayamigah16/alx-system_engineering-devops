@@ -12,14 +12,14 @@ file { '/etc/nginx/sites-available/default':
     root /var/www/html;
     index index.html index.htm;
 
-    location / {
+    location /redirect_me {
       return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
-
-    location = /custom_404.html {
+    
+    error_page 404 /404.html
+    location = /404.html {
       root /usr/share/nginx/html;
       internal;
-      echo 'Ceci n\\'est pas une page';
     }
 }
 ",
