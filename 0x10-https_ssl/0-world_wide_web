@@ -18,7 +18,7 @@ domain=$1
 subdomain=${2:-"www lb-01 web-01 web-02"}
 
 for sub in $subdomain; do
-    record_type=$(dig +short "$sub"."$domain" | awk 'NR==1{print $4}')
+    record_type=$(dig "$sub"."$domain" | awk 'NR==11{print $3}')
     destination=$(dig +short "$sub"."$domain")
     display_info "$sub" "$domain" "$record_type" "$destination"
 done
