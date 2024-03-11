@@ -1,3 +1,4 @@
+#!/usr/bin/env puppet
 # Puppet manifest to install and configure Nginx web server on Ubuntu
 
 # Install Nginx package
