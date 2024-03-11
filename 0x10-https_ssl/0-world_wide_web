@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Function to display information about a subdomain
 display_info() {
     subdomain=$1
@@ -19,8 +18,7 @@ domain=$1
 subdomain=${2:-"www lb-01 web-01 web-02"}
 
 for sub in $subdomain; do
-    result=$(dig +short $sub.$domain)
-    record_type=$(dig +short $sub.$domain | awk 'NR==1{print $4}')
-    destination=$(dig +short $sub.$domain)
+    record_type=$(dig +short "$sub"."$domain" | awk 'NR==1{print $4}')
+    destination=$(dig +short "$sub"."$domain")
     display_info "$sub" "$domain" "$record_type" "$destination"
 done
