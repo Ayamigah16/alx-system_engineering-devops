@@ -14,7 +14,10 @@ backup_date="$(date +'%d-%m-%Y')"
 backup_tar="backup_$backup_date.tar.gz"
 
 # Create MySQL dump
-mysqldump -u root -p"$mysql_password" --all-databases > "$backup_sql"
+if mysqldump -u root -p"$mysql_password" --all-databases > "$backup_sql"; then
+    echo "MySQL dump failed. Exiting."
+    exit 1
+fi
 
 # Check if MySQL dump was successful
 #if [ $? -ne 0 ]; then
@@ -23,7 +26,10 @@ mysqldump -u root -p"$mysql_password" --all-databases > "$backup_sql"
 #fi
 
 # Compress MySQL dump
-tar -czf "$backup_tar" "$backup_sql"
+if tar -czf "$backup_tar" "$backup_sql"; then
+    echo "Compression failed. Exiting."
+    exit 1
+fi
 
 # Check if compression was successful
 #if [ $? -ne 0 ]; then
