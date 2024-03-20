@@ -8,7 +8,7 @@ if ! command -v nginx &> /dev/null; then
 fi
 
 # Create the custom 404 page
-echo "<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Ceci n'est pas une page</h1></body></html>" | sudo tee /usr/share/nginx/html/404.html > /dev/null
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html > /dev/null
 
 # Define the custom 404 page configuration
 NOT_FOUND_CONFIG="error_page 404 /404.html;
