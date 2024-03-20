@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+sed -i 's/^user .*;/user nginx/g' /etc/nginx/nginx.conf
+rm /etc/nginx/sites-enabled/default
+printf 'server {\n    listen 8080 default_server;\n    listen [::]:8080 default_server;\n    root /var/www/html;\n    index index.html index.htm index.nginx-debian.html;\n    server_name _;\n    location / {\n        try_files $uri $uri/ =404;\n    }\n}' > /etc/nginx/sites-enabled/default
+service nginx restart
