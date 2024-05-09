@@ -11,19 +11,19 @@ num_bits=4096
 passphrase="betty"
 
 # Generate the RSA key pair
-ssh-keygen -t rsa -b "$num_bits" -C "Create an SSH key pair" -f "./$key_name" -N "$passphrase"
+ssh-keygen -t rsa -b "$num_bits" -C "abrahamayamigah070@gmail.com" -f "./$key_name" -N "$passphrase"
 
 # Display information about the generated key pair
 echo "Generating public/private rsa key pair."
 echo "Your identification has been saved in $key_name."
 echo "Your public key has been saved in $key_name.pub."
 echo "The key fingerprint is:"
-ssh-keygen -lf ~/.ssh/$key_name
+ssh-keygen -lf ./$key_name
 echo "The key's randomart image is:"
-ssh-keygen -lvf ~/.ssh/$key_name.pub
+ssh-keygen -lvf ./$key_name.pub
 
 # Move the generated files to the current directory
-mv ~/.ssh/$key_name* .
+cp ./$key_name* ~/.ssh/ 
 
 # List the current directory contents
-ls
+ls ~/.ssh/

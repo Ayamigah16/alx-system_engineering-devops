@@ -1,4 +1,14 @@
-Host 100.26.243.116
+Host 54.159.2.108
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
+Host 3.90.80.36
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
+Host 54.146.80.128
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
