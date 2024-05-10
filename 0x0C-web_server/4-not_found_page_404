@@ -1,27 +1,84 @@
 #!/usr/bin/env bash
-# Bash script to configure Nginx for a custom 404 page on Ubuntu 16.04
+# Script for duplicating web-01 to web-02
+# An upgraded version from the web-server scripts...
 
-# Check if Nginx is installed
-if ! command -v nginx &> /dev/null; then
-    echo "Nginx is not installed. Please run 1-install_nginx_web_server script first."
-    exit 1
+# Uncomment to see the script run in action
+#set -x
+
+echo -e "Updating and doing some minor checks...\n"
+
+function install_package() {
+    command -v "$1" &> /dev/null
+
+    if [ $? -ne 0 ]; then
+        echo -e "    Installing: $1\n"
+        sudo apt-get update -y -qq && \
+        sudo apt-get install -y "$1" -qq
+        echo -e "\n"
+    else
+        echo -e "    $1 is already installed.\n"
+    fi
+}
+
+install_package nginx # Install nginx
+
+echo -e "\nSetting up some minor stuff...\n"
+
+# Allow Nginx through the firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Give the user ownership of website files for easy editing
+if [ -d "/var/www" ]; then
+    sudo chown -R "$USER":"$USER" /var/www
+    sudo chmod -R 755 /var/www
+else
+    sudo mkdir -p /var/www
+    sudo chown -R "$USER":"$USER" /var/www
+    sudo chmod -R 755 /var/www
 fi
 
-# Create the custom 404 page
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html > /dev/null
+# Create directories if not present
+for dir in /var/www/{html,error}; do
+    if ! [ -d "$dir" ]; then
+        mkdir -p "$dir"
+    fi
+done
 
-# Define the custom 404 page configuration
-NOT_FOUND_CONFIG="error_page 404 /404.html;
-location = /404.html {
-    root /usr/share/nginx/html;
-    internal;
+# Create a new index
+echo "Hello World!" > /var/www/html/index.html
+
+# Create a new error page
+echo "Ceci n'est pas une page" > /var/www/html/error_404.html
+
+# Backup default server config file
+sudo cp /etc/nginx/sites-enabled/default nginx-sites-enabled_default.backup
+
+server_config=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html
+        server_name_;
+        add_header X-Served-By \$hostname;
+        location / {
+            try_files \$uri \$uri/ =404;
+        }
+        if (\$request_filename ~ redirect_me){
+            rewrite ^ https://th3-gr00t.tk/ permanent;
+        }
+        error_page 404 /error_404.html;
+        location = /error_404.html {
+            internal;
+        }
 }"
 
-# Add the custom 404 page configuration to the Nginx default site configuration
-echo "$NOT_FOUND_CONFIG" | sudo tee -a /etc/nginx/sites-available/default > /dev/null
+# Write the configuration to Nginx file
+echo "$server_config" | sudo dd status=none of=/etc/nginx/sites-enabled/default
 
-# Restart Nginx (without using systemctl)
-sudo service nginx restart
-
-# Display a message indicating successful configuration
-echo "Nginx configured with a custom 404 page. Requests to non-existing pages will return 'Ceci n'est pas une page'."
+# Check if Nginx is running and start or restart
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+    sudo service nginx start
+else
+    sudo service nginx restart
+fi
