@@ -1,5 +1,7 @@
 # Postmortem: Nginx Web Server Performance Under Load on May 15, 2024
 
+<img src="images/postmoterm.png" alt="" width="100%" height="600">
+
 ## Issue Summary:
 
 - Duration: May 15, 2024, 02:00 PM - 03:00 PM (UTC)
